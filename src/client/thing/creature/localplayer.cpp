@@ -238,6 +238,8 @@ void LocalPlayer::terminateWalk()
         m_serverWalkEndEvent = g_dispatcher.scheduleEvent([self] {
             self->m_serverWalking = false;
         }, 100);
+    } else {
+        Creature::terminateWalk();
     }
 }
 
