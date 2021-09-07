@@ -229,6 +229,7 @@ void LocalPlayer::updateWalkOffset(int totalPixelsWalked)
 void LocalPlayer::terminateWalk()
 {
     m_walkAnimationPhase = 0;
+    Creature::terminateWalk();
 
     if(m_serverWalking) {
         if(m_serverWalkEndEvent)
@@ -238,8 +239,6 @@ void LocalPlayer::terminateWalk()
         m_serverWalkEndEvent = g_dispatcher.scheduleEvent([self] {
             self->m_serverWalking = false;
         }, 100);
-    } else {
-        Creature::terminateWalk();
     }
 }
 
